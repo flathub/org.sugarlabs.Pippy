@@ -88,7 +88,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/sugarlabs/Pippy.git",
-                    "commit": "7f8e14d086128f2bd4fa4310aea9239ddb9410c3"
+                    "tag": "v75",
+                    "commit": "ad21b7aefa2ad5c4e069990787666ab8e4cdedbc"
                 },
                 {
                     "type": "patch",
@@ -104,7 +105,7 @@
                 },
                 {
                     "type": "patch",
-                    "path": "pippy-fix-focus.patch"
+                    "path": "pippy-fix-export.patch"
                 }
             ],
             "post-install": [
