@@ -1,9 +1,9 @@
 {
     "app-id": "org.sugarlabs.Pippy",
     "base": "org.sugarlabs.BaseApp",
-    "base-version": "20.04",
+    "base-version": "21.04",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "3.36",
+    "runtime-version": "40",
     "sdk": "org.gnome.Sdk",
     "separate-locales": false,
     "command": "sugarapp",
@@ -39,7 +39,7 @@
             "name": "box2d",
             "buildsystem": "simple",
             "build-commands": [
-                "pip3 install --no-index --find-links \"file://${PWD}\" --install-option=\"--prefix=${FLATPAK_DEST}\" box2d"
+                "pip3 install --no-index --find-links \"file://${PWD}\" --prefix=${FLATPAK_DEST} box2d"
             ],
             "sources": [
                 {
