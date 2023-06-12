@@ -58,8 +58,16 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gtksourceview/3.24/gtksourceview-3.24.6.tar.xz",
-                    "sha256": "7aa6bdfebcdc73a763dddeaa42f190c40835e6f8495bb9eb8f78587e2577c188"
+                    "url": "https://download.gnome.org/sources/gtksourceview/3.24/gtksourceview-3.24.11.tar.xz",
+                    "sha256": "691b074a37b2a307f7f48edc5b8c7afa7301709be56378ccf9cc9735909077fd",
+                    "x-checker-data": {
+                        "type": "gnome",
+                        "name": "gtksourceview",
+                        "versions": {
+                            "<": "4.0"
+                        },
+                        "stable-only": true
+                    }
                 }
             ]
         },
