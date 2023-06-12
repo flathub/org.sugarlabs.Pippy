@@ -23,7 +23,6 @@
         "/share/man"
     ],
     "modules": [
-        "shared-modules/pygame/pygame-1.9.4.json",
         {
             "name": "pygame2",
             "sources": [
