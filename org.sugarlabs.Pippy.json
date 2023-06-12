@@ -26,12 +26,19 @@
         "shared-modules/pygame/pygame-1.9.4.json",
         {
             "name": "swig",
-            "cleanup": [ "*" ],
+            "cleanup": [
+                "*"
+            ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://github.com/swig/swig/archive/rel-3.0.8.tar.gz",
-                    "sha256": "b00a4d54681ce0ab91d45dfbc89ebc400f4a05ba9cf217b459a521f9c0b9108e"
+                    "type": "git",
+                    "url": "https://github.com/swig/swig.git",
+                    "tag": "v4.1.1",
+                    "commit": "77323a0f07562b7d90d36181697a72a909b9519a",
+                    "x-checker-data": {
+                        "type": "git",
+                        "tag-pattern": "^(?:v|rel-)([\\d.]+)$"
+                    }
                 }
             ]
         },
