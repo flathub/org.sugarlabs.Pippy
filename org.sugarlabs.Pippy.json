@@ -39,13 +39,19 @@
             "name": "box2d",
             "buildsystem": "simple",
             "build-commands": [
-                "pip3 install --no-index --find-links \"file://${PWD}\" --prefix=${FLATPAK_DEST} box2d"
+                "python3 setup.py build_ext --inplace",
+                "pip3 install --no-index --find-links \"file://${PWD}\" --prefix=${FLATPAK_DEST} ."
             ],
             "sources": [
                 {
-                    "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/cc/7b/ddb96fea1fa5b24f8929714ef483f64c33e9649e7aae066e5f5023ea426a/Box2D-2.3.2.tar.gz",
-                    "sha256": "d1557dffdf9c1d6c796ec5df53e3d93227bb026c14b8411d22c295edaa2fb225"
+                    "type": "git",
+                    "url": "https://github.com/pybox2d/pybox2d.git",
+                    "tag": "2.3.10",
+                    "commit": "ed9d7b04f7099a15984c727dbce46c13abd64409",
+                    "x-checker-data": {
+                        "type": "git",
+                        "tag-pattern": "^([\\d.]+)$"
+                    }
                 }
             ]
         },
