@@ -149,8 +149,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/sugarlabs/Pippy.git",
-                    "tag": "v75",
-                    "commit": "ad21b7aefa2ad5c4e069990787666ab8e4cdedbc",
+                    "tag": "v76",
+                    "commit": "d172c9126550c5c00a92ba15c7c3cd2da6dfb461",
                     "x-checker-data": {
                         "type": "git",
                         "tag-pattern": "^v([\\d.]+)$"

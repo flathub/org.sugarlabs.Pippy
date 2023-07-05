@@ -15,7 +15,7 @@ index 9852917..9098819 100755
      def __init__(self, handle, **kwargs):
          super(ViewSourceActivity, self).__init__(handle, **kwargs)
 diff --git a/icondialog.py b/icondialog.py
-index 2c4878f..773f638 100644
+index 948db6c..37ebe69 100644
 --- a/icondialog.py
 +++ b/icondialog.py
 @@ -20,7 +20,6 @@ import shutil
@@ -37,10 +37,10 @@ index 2c4878f..773f638 100644
      for icon in icons:
          if icon.endswith('.svg'):
 diff --git a/notebook.py b/notebook.py
-index 2d974bc..e6eb935 100644
+index 7ef1637..729d420 100644
 --- a/notebook.py
 +++ b/notebook.py
-@@ -391,8 +391,15 @@ class SourceNotebook(AddNotebook):
+@@ -412,8 +412,15 @@ class SourceNotebook(AddNotebook):
              h()
  
      def __tab_close(self, index):
@@ -57,7 +57,7 @@ index 2d974bc..e6eb935 100644
          if self.get_n_pages() == 1:
              only_widget = self.get_nth_page(0)
 diff --git a/pippy_app.py b/pippy_app.py
-index a6b59a8..65d91d8 100644
+index 1cc3111..217fa8e 100644
 --- a/pippy_app.py
 +++ b/pippy_app.py
 @@ -74,8 +74,6 @@ from sugar3.graphics.toolbutton import ToolButton
@@ -79,7 +79,7 @@ index a6b59a8..65d91d8 100644
  import sound_check
  import logging
  
-@@ -205,19 +206,22 @@ class PippyActivity(ViewSourceActivity):
+@@ -206,19 +207,22 @@ class PippyActivity(ViewSourceActivity):
          activity_toolbar.insert(button, -1)
          if not self._library_writable():
              button.set_sensitive(False)
@@ -105,7 +105,7 @@ index a6b59a8..65d91d8 100644
  
          button = ToolButton('pippy-create-distutils')
          # TRANS: A distutils package is used to distribute Python modules
-@@ -644,6 +648,17 @@ class PippyActivity(ViewSourceActivity):
+@@ -675,6 +679,17 @@ class PippyActivity(ViewSourceActivity):
          self._reset_vte()
          self._source_tabs.get_text_view().grab_focus()
  
@@ -123,7 +123,7 @@ index a6b59a8..65d91d8 100644
      def _write_all_buffers(self, tmp_dir):
          data = self._source_tabs.get_all_data()
          zipdata = list(zip(data[0], data[1]))
-@@ -759,46 +774,30 @@ class PippyActivity(ViewSourceActivity):
+@@ -796,46 +811,30 @@ class PippyActivity(ViewSourceActivity):
              self.add_alert(alert)
  
      def _export_document_cb(self, __):
@@ -189,7 +189,7 @@ index a6b59a8..65d91d8 100644
  
      def _create_bundle_cb(self, button):
          from shutil import rmtree
-@@ -898,17 +897,8 @@ class PippyActivity(ViewSourceActivity):
+@@ -935,17 +934,8 @@ class PippyActivity(ViewSourceActivity):
                  f.write(line)
  
      def _export_distutils_cb(self, button):
@@ -208,16 +208,10 @@ index a6b59a8..65d91d8 100644
              alert = Alert()
              alert.props.title = _('Save as distutils package error')
              alert.props.msg = _('Please give your activity a meaningful '
-@@ -920,6 +910,21 @@ class PippyActivity(ViewSourceActivity):
+@@ -957,6 +947,15 @@ class PippyActivity(ViewSourceActivity):
              self.add_alert(alert)
              return
  
-+        chooser = DesktopSaveChooser(self, title + '-1.0.tar.gz')
-+        chooser.add_filter('.gz', 'gzip')
-+        file_path = chooser.get_filename()
-+        if not file_path:
-+            return
-+
 +        app_temp = os.path.join(self.get_activity_root(), 'instance')
 +        data = self._source_tabs.get_all_data()
 +        for filename, content in zip(data[0], data[1]):
@@ -227,10 +221,23 @@ index a6b59a8..65d91d8 100644
 +
 +        filenames = ','.join([("'" + name[:-3] + "'") for name in data[0]])
 +
+         found = next((
+             name for name in data[0]
+             if name != self._source_tabs.purify_name(name)),
+@@ -974,6 +973,12 @@ class PippyActivity(ViewSourceActivity):
+             self.add_alert(alert)
+             return
+ 
++        chooser = DesktopSaveChooser(self, title + '-1.0.tar.gz')
++        chooser.add_filter('.gz', 'gzip')
++        file_path = chooser.get_filename()
++        if not file_path:
++            return
++
          setup_script = DISTUTILS_SETUP_SCRIPT.format(modulename=title,
                                                       filenames=filenames)
          setupfile = open(os.path.join(app_temp, 'setup.py'), 'w')
-@@ -934,18 +939,9 @@ class PippyActivity(ViewSourceActivity):
+@@ -988,18 +993,9 @@ class PippyActivity(ViewSourceActivity):
  
          # Hand off to journal
          os.chmod(app_temp, 0o777)
@@ -251,7 +258,7 @@ index a6b59a8..65d91d8 100644
  
      def _export_example_cb(self, button):
          # Get the name of this pippy program.
-@@ -1067,96 +1063,31 @@ class PippyActivity(ViewSourceActivity):
+@@ -1121,98 +1117,33 @@ class PippyActivity(ViewSourceActivity):
              return self._pippy_instance.get_object_id()
  
      def write_file(self, file_path):
@@ -261,6 +268,8 @@ index a6b59a8..65d91d8 100644
          session_list = []
 -        app_temp = os.path.join(self.get_activity_root(), 'instance')
 -        tmpfile = os.path.join(app_temp, 'pippy-tempfile-storing.py')
+         if not self.session_data:
+             self.session_data.append(None)
 +        sources = os.path.join(activity.get_activity_root(), 'sources')
 +        os.makedirs(sources, exist_ok=True)
          for zipdata, content in zip(zipped_data, self.session_data):
@@ -357,7 +366,7 @@ index a6b59a8..65d91d8 100644
          self._loaded_session = []
          try:
              self._source_tabs.remove_page(0)
-@@ -1165,109 +1096,26 @@ class PippyActivity(ViewSourceActivity):
+@@ -1221,106 +1152,22 @@ class PippyActivity(ViewSourceActivity):
          except IndexError:
              pass
  
@@ -474,13 +483,17 @@ index a6b59a8..65d91d8 100644
 +
 +        self._py_file_loaded_from_journal = True
  
-         for name, content, path in self._loaded_session:
-             self._source_tabs.add_tab(name, content, path)
+         # Create tabs from the datastore, else add a blank tab
+         if self._loaded_session:
+@@ -1328,6 +1175,7 @@ class PippyActivity(ViewSourceActivity):
+                 self._source_tabs.add_tab(name, content, path)
+         else:
+             self._source_tabs.add_tab()
 +        self.session_data = self._loaded_session
  
  # TEMPLATES AND INLINE FILES
  ACTIVITY_INFO_TEMPLATE = '''
-@@ -1419,7 +1267,7 @@ def main():
+@@ -1479,7 +1327,7 @@ def main():
          'icon': icon,
          'class': 'activity.VteActivity',
          'bundle_id': ('org.sugarlabs.pippy.%s%d' %
@@ -489,4 +502,3 @@ index a6b59a8..65d91d8 100644
                         int(round(uniform(1000, 9999), 0)))),
          'mime_types': '',
          'extra_info': '',
-
