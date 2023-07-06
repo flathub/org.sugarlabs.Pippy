@@ -1,9 +1,9 @@
 {
     "app-id": "org.sugarlabs.Pippy",
     "base": "org.sugarlabs.BaseApp",
-    "base-version": "21.04",
+    "base-version": "23.06",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "40",
+    "runtime-version": "44",
     "sdk": "org.gnome.Sdk",
     "separate-locales": false,
     "command": "sugarapp",
@@ -23,15 +23,57 @@
         "/share/man"
     ],
     "modules": [
-        "shared-modules/pygame/pygame-1.9.4.json",
         {
-            "name": "swig",
-            "cleanup": [ "*" ],
+            "name": "pygame2",
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/swig/swig/archive/rel-3.0.8.tar.gz",
-                    "sha256": "b00a4d54681ce0ab91d45dfbc89ebc400f4a05ba9cf217b459a521f9c0b9108e"
+                    "url": "https://files.pythonhosted.org/packages/b9/42/154038c4988d750ded799dc5d6ca4e631db93888e3d76084625b0588dfd2/pygame-2.4.0.tar.gz",
+                    "sha256": "e3603e70e96ee30af1954ce57d4922a059402f368013e7138e90f1c03d185267",
+                    "x-checker-data": {
+                        "type": "pypi",
+                        "name": "pygame"
+                    }
+                }
+            ],
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --ignore-installed --no-deps --prefix=/app ."
+            ],
+            "build-options": {
+                "env": {
+                    "PORTMIDI_INC_PORTTIME": "1",
+                    "PYGAME_EXTRA_BASE": "/app"
+                },
+                "arch": {
+                    "aarch64": {
+                        "env": {
+                            "ORIGLIBDIRS": "/lib:/lib64:/lib/aarch64-linux-gnu"
+                        }
+                    },
+                    "x86_64": {
+                        "env": {
+                            "ORIGLIBDIRS": "/lib:/lib64:/lib/x86_64-linux-gnu"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "swig",
+            "cleanup": [
+                "*"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/swig/swig.git",
+                    "tag": "v4.1.1",
+                    "commit": "77323a0f07562b7d90d36181697a72a909b9519a",
+                    "x-checker-data": {
+                        "type": "git",
+                        "tag-pattern": "^(?:v|rel-)([\\d.]+)$"
+                    }
                 }
             ]
         },
@@ -39,13 +81,19 @@
             "name": "box2d",
             "buildsystem": "simple",
             "build-commands": [
-                "pip3 install --no-index --find-links \"file://${PWD}\" --prefix=${FLATPAK_DEST} box2d"
+                "python3 setup.py build_ext --inplace",
+                "pip3 install --no-index --find-links \"file://${PWD}\" --prefix=${FLATPAK_DEST} ."
             ],
             "sources": [
                 {
-                    "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/cc/7b/ddb96fea1fa5b24f8929714ef483f64c33e9649e7aae066e5f5023ea426a/Box2D-2.3.2.tar.gz",
-                    "sha256": "d1557dffdf9c1d6c796ec5df53e3d93227bb026c14b8411d22c295edaa2fb225"
+                    "type": "git",
+                    "url": "https://github.com/pybox2d/pybox2d.git",
+                    "tag": "2.3.10",
+                    "commit": "ed9d7b04f7099a15984c727dbce46c13abd64409",
+                    "x-checker-data": {
+                        "type": "git",
+                        "tag-pattern": "^([\\d.]+)$"
+                    }
                 }
             ]
         },
@@ -58,28 +106,36 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gtksourceview/3.24/gtksourceview-3.24.6.tar.xz",
-                    "sha256": "7aa6bdfebcdc73a763dddeaa42f190c40835e6f8495bb9eb8f78587e2577c188"
+                    "url": "https://download.gnome.org/sources/gtksourceview/3.24/gtksourceview-3.24.11.tar.xz",
+                    "sha256": "691b074a37b2a307f7f48edc5b8c7afa7301709be56378ccf9cc9735909077fd",
+                    "x-checker-data": {
+                        "type": "gnome",
+                        "name": "gtksourceview",
+                        "versions": {
+                            "<": "4.0"
+                        },
+                        "stable-only": true
+                    }
                 }
             ]
         },
         {
-            "name" : "vte",
-            "buildsystem" : "meson",
+            "name": "vte",
+            "buildsystem": "meson",
             "config-opts": [
                 "-Ddocs=false",
                 "-Dvapi=false"
             ],
-            "build-options" : {
-                "env" : {
-                    "CXXFLAGS" : "-fno-exceptions"
-                }
-            },
-            "sources" : [
+            "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/vte/0.60/vte-0.60.1.tar.xz",
-                    "sha256": "5e25807233f8a7e15204be7ff694bbcf6facbb0136092b5ba12584a7b70cf0c4"
+                    "url": "https://download.gnome.org/sources/vte/0.72/vte-0.72.2.tar.xz",
+                    "sha256": "f7966fd185a6981f53964162b71cfef7e606495155d6f5827b72aa0dd6741c9e",
+                    "x-checker-data": {
+                        "type": "gnome",
+                        "name": "vte",
+                        "stable-only": true
+                    }
                 }
             ]
         },
@@ -93,8 +149,12 @@
                 {
                     "type": "git",
                     "url": "https://github.com/sugarlabs/Pippy.git",
-                    "tag": "v75",
-                    "commit": "ad21b7aefa2ad5c4e069990787666ab8e4cdedbc"
+                    "tag": "v76",
+                    "commit": "d172c9126550c5c00a92ba15c7c3cd2da6dfb461",
+                    "x-checker-data": {
+                        "type": "git",
+                        "tag-pattern": "^v([\\d.]+)$"
+                    }
                 },
                 {
                     "type": "patch",

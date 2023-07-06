@@ -1,5 +1,5 @@
 diff --git a/activity/activity.info b/activity/activity.info
-index e419d6a..f0cedae 100644
+index 17e8341..c7cd843 100644
 --- a/activity/activity.info
 +++ b/activity/activity.info
 @@ -1,14 +1,20 @@
@@ -9,7 +9,7 @@ index e419d6a..f0cedae 100644
 +bundle_id = org.sugarlabs.Pippy
  exec = sugar-activity3 pippy_app.PippyActivity
  icon = activity-icon
- activity_version = 75
+ activity_version = 76
 +release_date = 2020-03-10
  max_participants = 4
  mime_types = text/x-python
