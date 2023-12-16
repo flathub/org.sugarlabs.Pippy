@@ -28,8 +28,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/b9/42/154038c4988d750ded799dc5d6ca4e631db93888e3d76084625b0588dfd2/pygame-2.4.0.tar.gz",
-                    "sha256": "e3603e70e96ee30af1954ce57d4922a059402f368013e7138e90f1c03d185267",
+                    "url": "https://files.pythonhosted.org/packages/c6/aa/2c0c867d6cff00966cfc2152b25f61599f87e88b239e4dcb8ad5357f0f69/pygame-2.5.2.tar.gz",
+                    "sha256": "c1b89eb5d539e7ac5cf75513125fb5f2f0a2d918b1fd6e981f23bf0ac1b1c24a",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "pygame"
@@ -129,8 +129,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/vte/0.72/vte-0.72.2.tar.xz",
-                    "sha256": "f7966fd185a6981f53964162b71cfef7e606495155d6f5827b72aa0dd6741c9e",
+                    "url": "https://download.gnome.org/sources/vte/0.74/vte-0.74.2.tar.xz",
+                    "sha256": "a535fb2a98fea8a2449cd1a02cccf5190131dddff52e715afdace3feb536eae7",
                     "x-checker-data": {
                         "type": "gnome",
                         "name": "vte",
