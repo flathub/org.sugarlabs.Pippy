@@ -68,8 +68,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/swig/swig.git",
-                    "tag": "v4.1.1",
-                    "commit": "77323a0f07562b7d90d36181697a72a909b9519a",
+                    "tag": "v4.2.1",
+                    "commit": "b592468f522cf7f4a0812493bfa07cbe60679d7c",
                     "x-checker-data": {
                         "type": "git",
                         "tag-pattern": "^(?:v|rel-)([\\d.]+)$"
