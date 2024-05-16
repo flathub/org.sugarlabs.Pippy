@@ -2,7 +2,7 @@ diff --git a/activity/activity.info b/activity/activity.info
 index 17e8341..c7cd843 100644
 --- a/activity/activity.info
 +++ b/activity/activity.info
-@@ -1,14 +1,20 @@
+@@ -1,14 +1,21 @@
  [Activity]
  name = Pippy
 -bundle_id = org.laptop.Pippy
@@ -27,4 +27,5 @@ index 17e8341..c7cd843 100644
 +url = https://help.sugarlabs.org/en/pippy.html
 +update_contact = tch@sugarlabs.org
 +developer_name = Sugar Labs Community
++developer_id = org.sugarlabs
 +screenshots = https://i.imgur.com/VeZWL2q.png https://i.imgur.com/7QOhdmS.png https://i.imgur.com/fNlsMcf.png
