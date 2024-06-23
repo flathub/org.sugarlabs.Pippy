@@ -1,9 +1,9 @@
 {
     "app-id": "org.sugarlabs.Pippy",
     "base": "org.sugarlabs.BaseApp",
-    "base-version": "23.06",
+    "base-version": "24.04",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "44",
+    "runtime-version": "46",
     "sdk": "org.gnome.Sdk",
     "separate-locales": false,
     "command": "sugarapp",
@@ -28,8 +28,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/b9/42/154038c4988d750ded799dc5d6ca4e631db93888e3d76084625b0588dfd2/pygame-2.4.0.tar.gz",
-                    "sha256": "e3603e70e96ee30af1954ce57d4922a059402f368013e7138e90f1c03d185267",
+                    "url": "https://files.pythonhosted.org/packages/c6/aa/2c0c867d6cff00966cfc2152b25f61599f87e88b239e4dcb8ad5357f0f69/pygame-2.5.2.tar.gz",
+                    "sha256": "c1b89eb5d539e7ac5cf75513125fb5f2f0a2d918b1fd6e981f23bf0ac1b1c24a",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "pygame"
@@ -68,8 +68,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/swig/swig.git",
-                    "tag": "v4.1.1",
-                    "commit": "77323a0f07562b7d90d36181697a72a909b9519a",
+                    "tag": "v4.2.1",
+                    "commit": "b592468f522cf7f4a0812493bfa07cbe60679d7c",
                     "x-checker-data": {
                         "type": "git",
                         "tag-pattern": "^(?:v|rel-)([\\d.]+)$"
@@ -129,8 +129,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/vte/0.72/vte-0.72.2.tar.xz",
-                    "sha256": "f7966fd185a6981f53964162b71cfef7e606495155d6f5827b72aa0dd6741c9e",
+                    "url": "https://download.gnome.org/sources/vte/0.76/vte-0.76.3.tar.xz",
+                    "sha256": "f678e94c056f377fd0021214adff5450cb172e9a08b160911181ddff7b7d5d60",
                     "x-checker-data": {
                         "type": "gnome",
                         "name": "vte",
