@@ -18,13 +18,22 @@
     "cleanup": [
         "/include",
         "/lib/pkgconfig",
-        "/lib/python3.*/*/pygame/tests",
+        "/lib/python3.*/*/Box2D/examples",
+        "/lib/python3.*/*/Box2D/tests",
         "/lib/python3.*/*/pygame/examples",
-        "/lib/python3.*/*/pygame/docs",        
+        "/lib/python3.*/*/pygame/docs",
+        "/lib/python3.*/*/pygame/tests",
         "/share/aclocal",
+        "/share/glade",
+        "/share/gtk-doc",
         "/share/info",
-        "/share/man"
+        "/share/man",
+        "/share/vala",
+        "/share/xdg-terminals"
     ],
+    "cleanup-commands": [
+      "rm -rf /app/share/gir-1.0"
+    ],    
     "modules": [
         {
             "name": "pygame2",
