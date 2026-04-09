@@ -18,6 +18,9 @@
     "cleanup": [
         "/include",
         "/lib/pkgconfig",
+        "/lib/python3.*/*/pygame/tests",
+        "/lib/python3.*/*/pygame/examples",
+        "/lib/python3.*/*/pygame/docs",        
         "/share/aclocal",
         "/share/info",
         "/share/man"
