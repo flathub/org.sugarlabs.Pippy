@@ -140,13 +140,16 @@
             "buildsystem": "meson",
             "config-opts": [
                 "-Ddocs=false",
-                "-Dvapi=false"
+                "-Dgtk3=true",
+                "-Dgtk4=false",
+                "-Dvapi=false",
+                "-Dglade=false"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/vte/0.83/vte-0.83.91.tar.xz",
-                    "sha256": "9ee8f5011d2856c5dae80bde3c11d7fc942fa479c2e2d08b07f2a7af351379c5",
+                    "url": "https://download.gnome.org/sources/vte/0.82/vte-0.82.1.tar.xz",
+                    "sha256": "79376d70402d271e2d38424418e1aea72357934d272e321e3906b71706a78e3a",
                     "x-checker-data": {
                         "type": "gnome",
                         "name": "vte",
