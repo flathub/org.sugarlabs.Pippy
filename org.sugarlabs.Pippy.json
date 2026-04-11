@@ -1,9 +1,9 @@
 {
     "app-id": "org.sugarlabs.Pippy",
     "base": "org.sugarlabs.BaseApp",
-    "base-version": "24.04",
+    "base-version": "26.04",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "46",
+    "runtime-version": "50",
     "sdk": "org.gnome.Sdk",
     "separate-locales": false,
     "command": "sugarapp",
@@ -18,18 +18,30 @@
     "cleanup": [
         "/include",
         "/lib/pkgconfig",
+        "/lib/python3.*/*/Box2D/examples",
+        "/lib/python3.*/*/Box2D/tests",
+        "/lib/python3.*/*/pygame/examples",
+        "/lib/python3.*/*/pygame/docs",
+        "/lib/python3.*/*/pygame/tests",
         "/share/aclocal",
+        "/share/glade",
+        "/share/gtk-doc",
         "/share/info",
-        "/share/man"
+        "/share/man",
+        "/share/vala",
+        "/share/xdg-terminals"
     ],
+    "cleanup-commands": [
+      "rm -rf /app/share/gir-1.0"
+    ],    
     "modules": [
         {
             "name": "pygame2",
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/c6/aa/2c0c867d6cff00966cfc2152b25f61599f87e88b239e4dcb8ad5357f0f69/pygame-2.5.2.tar.gz",
-                    "sha256": "c1b89eb5d539e7ac5cf75513125fb5f2f0a2d918b1fd6e981f23bf0ac1b1c24a",
+                    "url": "https://files.pythonhosted.org/packages/49/cc/08bba60f00541f62aaa252ce0cfbd60aebd04616c0b9574f755b583e45ae/pygame-2.6.1.tar.gz",
+                    "sha256": "56fb02ead529cee00d415c3e007f75e0780c655909aaa8e8bf616ee09c9feb1f",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "pygame"
@@ -38,7 +50,7 @@
             ],
             "buildsystem": "simple",
             "build-commands": [
-                "pip3 install --ignore-installed --no-deps --prefix=/app ."
+                "pip3 install --ignore-installed --no-deps --prefix=/app --no-build-isolation ."
             ],
             "build-options": {
                 "env": {
@@ -68,8 +80,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/swig/swig.git",
-                    "tag": "v4.2.1",
-                    "commit": "b592468f522cf7f4a0812493bfa07cbe60679d7c",
+                    "tag": "v4.4.1",
+                    "commit": "c7b01379fa00ff152bc22d4dd0e0d5bb862282d9",
                     "x-checker-data": {
                         "type": "git",
                         "tag-pattern": "^(?:v|rel-)([\\d.]+)$"
@@ -82,7 +94,7 @@
             "buildsystem": "simple",
             "build-commands": [
                 "python3 setup.py build_ext --inplace",
-                "pip3 install --no-index --find-links \"file://${PWD}\" --prefix=${FLATPAK_DEST} ."
+                "pip3 install --no-index --find-links \"file://${PWD}\" --prefix=${FLATPAK_DEST} . --no-build-isolation"
             ],
             "sources": [
                 {
@@ -112,10 +124,14 @@
                         "type": "gnome",
                         "name": "gtksourceview",
                         "versions": {
-                            "<": "4.0"
+                            "<": "3.25"
                         },
                         "stable-only": true
                     }
+                },
+                {
+                    "type": "patch",
+                    "path": "gtksourceview-fix-gcc-cast.patch"
                 }
             ]
         },
@@ -124,13 +140,16 @@
             "buildsystem": "meson",
             "config-opts": [
                 "-Ddocs=false",
-                "-Dvapi=false"
+                "-Dgtk3=true",
+                "-Dgtk4=false",
+                "-Dvapi=false",
+                "-Dglade=false"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/vte/0.76/vte-0.76.3.tar.xz",
-                    "sha256": "f678e94c056f377fd0021214adff5450cb172e9a08b160911181ddff7b7d5d60",
+                    "url": "https://download.gnome.org/sources/vte/0.82/vte-0.82.1.tar.xz",
+                    "sha256": "79376d70402d271e2d38424418e1aea72357934d272e321e3906b71706a78e3a",
                     "x-checker-data": {
                         "type": "gnome",
                         "name": "vte",
